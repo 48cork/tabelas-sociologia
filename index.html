@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabelas de Introdução à Sociologia</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f5f5; color: #333; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #2c3e50, #4a6491); color: white; padding: 30px 0; text-align: center; border-radius: 0 0 10px 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-bottom: 30px; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { font-size: 1.2rem; opacity: 0.9; }
+        .table-container { background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 25px; margin-bottom: 30px; overflow-x: auto; }
+        h2 { color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #eaeaea; font-size: 1.8rem; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { background-color: #4a6491; color: white; text-align: left; padding: 15px; font-weight: 600; }
+        td { padding: 15px; border-bottom: 1px solid #eaeaea; vertical-align: top; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f0f7ff; }
+        .table-description { font-style: italic; color: #666; margin-bottom: 20px; padding: 10px; background-color: #f9f9f9; border-left: 4px solid #4a6491; }
+        .navigation { display: flex; justify-content: space-between; margin-top: 30px; }
+        .nav-button { background-color: #4a6491; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 1rem; transition: background-color 0.3s; }
+        .nav-button:hover { background-color: #2c3e50; }
+        .nav-button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        .table-counter { text-align: center; color: #666; font-weight: bold; margin-top: 10px; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; color: #666; font-size: 0.9rem; border-top: 1px solid #eaeaea; }
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            h1 { font-size: 2rem; }
+            th, td { padding: 10px; font-size: 0.9rem; }
+            .nav-button { padding: 10px 15px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Introdução à Sociologia</h1>
+            <p class="subtitle">Recursos visuais para o ensino da disciplina</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="table-container">
+            <h2 id="table-title">Tabela 1: O Contexto Histórico do Surgimento da Sociologia</h2>
+            <p class="table-description">Apresentar os fatores históricos que criaram as condições para o surgimento da Sociologia como ciência.</p>
+            
+            <table id="current-table"></table>
+            
+            <div class="table-counter">
+                <span id="current-table-number">1</span> de 10
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-btn" class="nav-button" disabled>Anterior</button>
+                <button id="next-btn" class="nav-button">Próxima</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Material didático para a disciplina de Introdução à Sociologia</p>
+        </div>
+    </footer>
+
+    <script>
+        const tables = [
+            {
+                title: "Tabela 1: O Contexto Histórico do Surgimento da Sociologia",
+                description: "Apresentar os fatores históricos que criaram as condições para o surgimento da Sociologia como ciência.",
+                headers: ["Fator Histórico", "Descrição do Fenômeno", "Impacto/Problema Social Gerado", "Pergunta Sociológica Emergente"],
+                rows: [
+                    ["Revoluções Industriais", "Transição da produção artesanal para a manufatura e produção em massa.", "Urbanização caótica, surgimento do proletariado, condições de trabalho precárias.", "Como a nova divisão do trabalho afeta a coesão social?"],
+                    ["Revoluções Políticas", "Queda do Antigo Regime e ascensão do Estado-Nação (e.g., Revolução Francesa).", "Desestruturação da ordem estamental, busca por novos princípios de ordem e legitimidade.", "Como manter a ordem social sem o fundamento divino dos reis?"],
+                    ["Iluminismo", "Valorização da razão, da ciência e do progresso como pilares do conhecimento.", "Crítica à tradição e à autoridade religiosa como únicas fontes de verdade.", "É possível estudar a sociedade de forma científica, como as ciências naturais?"],
+                    ["Urbanização Intensa", "Êxodo rural e crescimento desordenado das cidades.", "Anomia, ruptura de laços comunitários tradicionais, novos problemas sociais.", "Como se formam novos laços sociais em um ambiente urbano e impessoal?"]
+                ]
+            },
+            {
+                title: "Tabela 2: Os Pioneiros da Sociologia: Objeto e Método",
+                description: "Comparar as visões fundadoras sobre o que é a sociedade e como estudá-la.",
+                headers: ["Pensador", "Contexto Influente", "Objeto de Estudo Central", "Método/Abordagem Proposto", "Conceito-Chave"],
+                rows: [
+                    ["Auguste Comte", "Iluminismo, Ciência Positiva.", "A sociedade como um organismo regido por leis.", "Física Social (Positivismo): Observação, experimentação e comparação para descobrir leis sociais.", "Lei dos Três Estados (Teológico, Metafísico, Positivo)."],
+                    ["Émile Durkheim", "Instabilidade pós-Revolução Francesa, Industrialização.", "Os Fatos Sociais - coisas exteriores e coercitivas sobre os indivíduos.", "Buscar as causas sociais dos fenômenos, não as psicológicas. Comparar dados.", "Fatos Sociais, Consciência Coletiva, Anomia."],
+                    ["Karl Marx", "Capitalismo Industrial, Exploração da classe trabalhadora.", "As Relações Sociais de Produção e a luta de classes.", "Materialismo Histórico-Dialético: A realidade económica determina a estrutura social. A história é a história da luta de classes.", "Luta de Classes, Mais-Valia, Alienação, Ideologia."],
+                    ["Max Weber", "Racionalização do mundo, Burocratização.", "A Ação Social - conduta humana dotada de sentido e orientada pelo outro.", "Sociologia Compreensiva: Entender o sentido da ação social. Uso de Tipos Ideais.", "Ação Social, Tipo Ideal, Racionalização, Poder."]
+                ]
+            },
+            {
+                title: "Tabela 3: A Questão da Ordem Social: Durkheim vs. Marx",
+                description: "Destacar a divergência fundamental entre duas grandes correntes sobre a origem da coesão e do conflito social.",
+                headers: ["Dimensão", "Perspectiva de Durkheim (Funcionalismo)", "Perspectiva de Marx (Conflito)"],
+                rows: [
+                    ["Natureza da Sociedade", "Um sistema integrado, um organismo onde as partes cooperam para o todo.", "Um palco de conflito permanente entre classes com interesses antagónicos."],
+                    ["Base da Ordem Social", "Consenso moral (Consciência Coletiva), laços de solidariedade (mecânica/orgânica).", "Dominação de uma classe sobre a outra, sustentada pelo Estado e pela ideologia."],
+                    ["Origem do Conflito", "Anomia: estado de desregramento social onde as normas perdem a força.", "A exploração inerente ao modo de produção capitalista (a mais-valia)."],
+                    ["Função da Divisão do Trabalho", "Criar solidariedade orgânica (interdependência) nas sociedades complexas.", "Gerar alienação e aprofundar a divisão entre capital e trabalho."]
+                ]
+            },
+            {
+                title: "Tabela 4: A Questão da Ação e da Estrutura: Weber vs. Durkheim",
+                description: "Contrastar a visão que prioriza as estruturas sociais (Durkheim) com a que prioriza a ação individual (Weber).",
+                headers: ["Dimensão", "Émile Durkheim (Estrutural)", "Max Weber (Ação Social)"],
+                rows: [
+                    ["Ponto de Partida", "A Sociedade (o todo) precede e determina o indivíduo.", "O Indivíduo e suas ações dotadas de sentido."],
+                    ["Foco de Análise", "Fatos Sociais exteriores e coercitivos.", "Ação Social e sua interpretação."],
+                    ["Metodologia", "Explicação causal objetiva, similar às ciências naturais.", "Compreensão (Verstehen) do sentido subjetivo da ação."],
+                    ["Exemplo de Ferramenta", "Estatísticas de suicídio para demonstrar um facto social.", "Construção de um Tipo Ideal de burocrata ou de capitalista."]
+                ]
+            },
+            {
+                title: "Tabela 5: Tipos Ideais de Ação Social (Weber)",
+                description: "Esclarecer a classificação weberiana das motivações humanas, fundamental para sua sociologia compreensiva.",
+                headers: ["Tipo de Ação Social", "Motivação/Fundamento", "Exemplo"],
+                rows: [
+                    ["Ação Tradicional", "Costume, hábito, tradição enraizada.", "Celebrar o Natal com a mesma ceia de família todos os anos."],
+                    ["Ação Afetiva", "Emoções, sentimentos imediatos.", "Doar uma grande quantia para uma causa movido pela comoção."],
+                    ["Ação Racional com Relação a Valores", "Crença incondicional em um valor (ético, estético, religioso).", "Um militante político que vai para a prisão por defender sua ideologia."],
+                    ["Ação Racional com Relação a Fins", "Cálculo de meios e fins para atingir um objetivo.", "Um estudante que escolhe um curso universitário com base no mercado de trabalho."]
+                ]
+            },
+            {
+                title: "Tabela 6: Correntes Sociológicas Clássicas: Síntese Conceitual",
+                description: "Oferecer uma visão geral e crítica das principais correntes, expandindo a visão dos 'clássicos'.",
+                headers: ["Corrente Teórica", "Principais Exponentes", "Premissa Central", "Conceitos Fundamentais", "Críticas Principais"],
+                rows: [
+                    ["Teoria do Conflito", "Karl Marx, Max Weber", "A sociedade é marcada por conflitos e desigualdades na distribuição de poder e recursos.", "Luta de Classes, Poder, Ideologia, Dominação.", "Pode superestimar o conflito, negligenciando aspectos de consenso e cooperação."],
+                    ["Funcionalismo", "Émile Durkheim", "A sociedade é um sistema complexo cujas partes trabalham em conjunto para promover solidariedade e estabilidade.", "Função, Disfunção, Instituições, Solidariedade, Anomia.", "Pode ser conservador, justificando a ordem estabelecida e negligenciando a mudança social."],
+                    ["Teoria da Ação Social", "Max Weber", "A sociedade é o produto das ações e interpretações dos indivíduos.", "Ação Social, Tipo Ideal, Racionalização, Compreensão.", "Pode dificultar a generalização, focando excessivamente no aspecto subjetivo."]
+                ]
+            },
+            {
+                title: "Tabela 7: A Perspectiva Funcionalista sobre Instituições Sociais",
+                description: "Ilustrar como o Funcionalismo analisa as principais instituições, focando em suas 'funções'.",
+                headers: ["Instituição Social", "Função Manifesta (Objetiva e Declarada)", "Função Latente (Não Reconhecida ou Não Declarada)", "Possível Disfunção"],
+                rows: [
+                    ["Família", "Socialização primária, reprodução.", "Criação de redes de apoio e status social.", "Transmissão de desigualdades ou violência doméstica."],
+                    ["Educação", "Transmissão de conhecimentos e habilidades.", "Criação de uma rede de contatos (networking), reforço da hierarquia social.", "Reprodução das desigualdades sociais (Bourdieu)."],
+                    ["Religião", "Fornecer sentido e conforto espiritual.", "Promover a coesão do grupo e reforçar normas sociais.", "Gerar intolerância e conflitos sectários."]
+                ]
+            },
+            {
+                title: "Tabela 8: Conceitos Marxistas para Análise do Capitalismo",
+                description: "Detalhar o vocabulário conceptual marxista, essencial para criticar a sociedade capitalista.",
+                headers: ["Conceito", "Definição", "Explicação/Implicação"],
+                rows: [
+                    ["Materialismo Histórico", "A estrutura económica (base) determina a superestrutura (política, direito, cultura).", "As ideias dominantes de uma época são as ideias da classe dominante."],
+                    ["Mais-Valia", "Valor não pago do trabalho do operário, que é a fonte do lucro do capitalista.", "É a base da exploração no capitalismo. Pode ser absoluta (mais horas) ou relativa (mais eficiência)."],
+                    ["Alienação", "Processo pelo qual o trabalhador se torna estranho ao produto do seu trabalho, ao seu potencial criativo e aos outros.", "O trabalho, que deveria ser realização, torna-se uma atividade estranha e penosa."],
+                    ["Ideologia", "Conjunto de ideias que mascara a realidade e justifica a dominação de classe.", "Cria uma 'falsa consciência' na classe trabalhadora, fazendo-a aceitar a ordem que a explora."],
+                    ["Consciência de Classe", "Compreensão, por parte do proletariado, de sua real situação de exploração e seu potencial revolucionário.", "É o antídoto para a ideologia e o pré-requisito para a transformação social."]
+                ]
+            },
+            {
+                title: "Tabela 9: O Processo de Racionalização (Weber) e suas Consequências",
+                description: "Explicar o conceito weberiano de racionalização e sua manifestação central: a burocracia.",
+                headers: ["Conceito", "Definição", "Exemplo Prático", "Consequência Paradoxal ('Jaula de Aço')"],
+                rows: [
+                    ["Racionalização", "Processo histórico de substituição de motivações tradicionais ou afetivas pelo cálculo e eficiência.", "Substituição do juízo do artesão pela linha de montagem padronizada.", "A busca pela eficiência máxima pode esvaziar a vida de sentido e espontaneidade."],
+                    ["Burocracia", "Forma de organização baseada em regras, hierarquia, impessoalidade e competência técnica.", "Funcionamento de um ministério público, de uma universidade, de um grande hospital.", "Pode gerar desumanização, excesso de papelada e perda de autonomia individual."],
+                    ["Tipo Ideal", "Construção conceptual que acentua traços essenciais de um fenômeno social para facilitar a análise.", "O 'Tipo Ideal de Burocracia' ou o 'Espírito do Capitalismo'.", "É uma ferramenta heurística, não uma descrição fiel da realidade, que é sempre mais complexa."]
+                ]
+            },
+            {
+                title: "Tabela 10: Síntese dos Métodos nas Abordagens Clássicas",
+                description: "Reforçar as diferenças metodológicas entre os autores, um ponto crucial para entender a Sociologia como ciência.",
+                headers: ["Pensador", "Método Principal", "O que é um 'Bom Dado' ou 'Evidência'?", "Objetivo Final da Análise"],
+                rows: [
+                    ["Auguste Comte", "Positivismo: Observação, experimentação indireta, comparação histórica.", "Dados objetivos e quantificáveis, semelhantes aos das ciências naturais.", "Estabelecer leis gerais do desenvolvimento social."],
+                    ["Émile Durkheim", "Método Funcionalista: Isolar fatos sociais e buscar suas causas sociais através de correlações.", "Estatísticas (ex: taxas de suicídio) que revelem um padrão social externo ao indivíduo.", "Explicar um fenômeno social por sua função na sociedade."],
+                    ["Karl Marx", "Materialismo Dialético: Análise histórica e económica das relações de classe.", "Documentos históricos, dados económicos que revelem a luta de classes e a exploração.", "Criticar a sociedade capitalista e transformá-la através da práxis."],
+                    ["Max Weber", "Sociologia Compreensiva: Construção de Tipos Ideais para entender o sentido da ação social.", "Documentos, diários, comportamentos observáveis que permitam inferir o sentido subjetivo da ação.", "Compreender como as ações sociais, em aggregate, constroem estruturas sociais complexas."]
+                ]
+            }
+        ];
+
+        const tableTitle = document.getElementById('table-title');
+        const tableDescription = document.querySelector('.table-description');
+        const currentTable = document.getElementById('current-table');
+        const currentTableNumber = document.getElementById('current-table-number');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        let currentIndex = 0;
+
+        function renderTable(index) {
+            const table = tables[index];
+            tableTitle.textContent = table.title;
+            tableDescription.textContent = table.description;
+            currentTableNumber.textContent = index + 1;
+            currentTable.innerHTML = '';
+            
+            const thead = document.createElement('thead');
+            const headerRow = document.createElement('tr');
+            table.headers.forEach(headerText => {
+                const th = document.createElement('th');
+                th.textContent = headerText;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            currentTable.appendChild(thead);
+            
+            const tbody = document.createElement('tbody');
+            table.rows.forEach(rowData => {
+                const row = document.createElement('tr');
+                rowData.forEach(cellData => {
+                    const td = document.createElement('td');
+                    td.textContent = cellData;
+                    row.appendChild(td);
+                });
+                tbody.appendChild(row);
+            });
+            currentTable.appendChild(tbody);
+            
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === tables.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderTable(currentIndex);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < tables.length - 1) {
+                currentIndex++;
+                renderTable(currentIndex);
+            }
+        });
+
+        renderTable(currentIndex);
+    </script>
+</body>
+</html>
