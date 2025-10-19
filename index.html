@@ -13,12 +13,24 @@
         .subtitle { font-size: 1.2rem; opacity: 0.9; }
         .table-container { background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 25px; margin-bottom: 30px; overflow-x: auto; }
         h2 { color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #eaeaea; font-size: 1.8rem; }
+        h3 { color: #4a6491; margin: 25px 0 15px 0; font-size: 1.4rem; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
         th { background-color: #4a6491; color: white; text-align: left; padding: 15px; font-weight: 600; }
         td { padding: 15px; border-bottom: 1px solid #eaeaea; vertical-align: top; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         tr:hover { background-color: #f0f7ff; }
         .table-description { font-style: italic; color: #666; margin-bottom: 20px; padding: 10px; background-color: #f9f9f9; border-left: 4px solid #4a6491; }
+        .quiz-container { background-color: #f8f9fa; border-radius: 8px; padding: 20px; margin-top: 30px; border-left: 4px solid #28a745; }
+        .quiz-question { margin-bottom: 20px; padding: 15px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .quiz-options { margin: 10px 0; }
+        .quiz-option { margin: 8px 0; padding: 10px; background: #f8f9fa; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
+        .quiz-option:hover { background: #e9ecef; }
+        .quiz-option.correct { background: #d4edda; border-left: 4px solid #28a745; }
+        .quiz-option.incorrect { background: #f8d7da; border-left: 4px solid #dc3545; }
+        .quiz-feedback { margin-top: 10px; padding: 10px; border-radius: 5px; display: none; }
+        .quiz-feedback.correct { background: #d4edda; color: #155724; }
+        .quiz-feedback.incorrect { background: #f8d7da; color: #721c24; }
+        .quiz-results { margin-top: 20px; padding: 15px; background: #e7f3ff; border-radius: 5px; text-align: center; display: none; }
         .navigation { display: flex; justify-content: space-between; margin-top: 30px; }
         .nav-button { background-color: #4a6491; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 1rem; transition: background-color 0.3s; }
         .nav-button:hover { background-color: #2c3e50; }
@@ -48,6 +60,9 @@
             
             <table id="current-table"></table>
             
+            <!-- Área do Quiz -->
+            <div id="quiz-area"></div>
+            
             <div class="table-counter">
                 <span id="current-table-number">1</span> de 10
             </div>
@@ -76,6 +91,63 @@
                     ["Revoluções Políticas", "Queda do Antigo Regime e ascensão do Estado-Nação (e.g., Revolução Francesa).", "Desestruturação da ordem estamental, busca por novos princípios de ordem e legitimidade.", "Como manter a ordem social sem o fundamento divino dos reis?"],
                     ["Iluminismo", "Valorização da razão, da ciência e do progresso como pilares do conhecimento.", "Crítica à tradição e à autoridade religiosa como únicas fontes de verdade.", "É possível estudar a sociedade de forma científica, como as ciências naturais?"],
                     ["Urbanização Intensa", "Êxodo rural e crescimento desordenado das cidades.", "Anomia, ruptura de laços comunitários tradicionais, novos problemas sociais.", "Como se formam novos laços sociais em um ambiente urbano e impessoal?"]
+                ],
+                quiz: [
+                    {
+                        question: "Qual foi o principal impacto social das Revoluções Industriais?",
+                        options: [
+                            "Aumento da produção agrícola",
+                            "Urbanização caótica e surgimento do proletariado",
+                            "Fortalecimento do sistema feudal",
+                            "Diminuição da divisão do trabalho"
+                        ],
+                        correct: 1,
+                        explanation: "As Revoluções Industriais provocaram intensa urbanização e o surgimento de uma nova classe social: o proletariado industrial."
+                    },
+                    {
+                        question: "Qual problema social a Revolução Francesa ajudou a evidenciar?",
+                        options: [
+                            "Crise ecológica",
+                            "Busca por novos princípios de ordem e legitimidade",
+                            "Superpopulação",
+                            "Escassez de recursos naturais"
+                        ],
+                        correct: 1,
+                        explanation: "Com a queda do Antigo Regime, surgiu a necessidade de encontrar novos fundamentos para a ordem social sem o apoio da tradição e da religião."
+                    },
+                    {
+                        question: "Qual contribuição do Iluminismo foi crucial para o surgimento da Sociologia?",
+                        options: [
+                            "Valorização da tradição",
+                            "Fortalecimento do absolutismo",
+                            "Valorização da razão e da ciência",
+                            "Rejeição do método científico"
+                        ],
+                        correct: 2,
+                        explanation: "O Iluminismo trouxe a crença de que a razão e o método científico poderiam ser aplicados ao estudo da sociedade."
+                    },
+                    {
+                        question: "O que caracterizou o processo de urbanização intensa?",
+                        options: [
+                            "Êxodo urbano e crescimento rural",
+                            "Êxodo rural e crescimento desordenado das cidades",
+                            "Estagnação demográfica",
+                            "Distribuição equilibrada da população"
+                        ],
+                        correct: 1,
+                        explanation: "A urbanização intensa foi marcada pelo êxodo rural massivo e crescimento desordenado dos centros urbanos."
+                    },
+                    {
+                        question: "Qual conceito de Durkheim está relacionado aos problemas da urbanização?",
+                        options: [
+                            "Mais-valia",
+                            "Ação social",
+                            "Anomia",
+                            "Ideologia"
+                        ],
+                        correct: 2,
+                        explanation: "Anomia refere-se ao estado de desregramento social onde as normas perdem sua força, comum nas sociedades em rápida transformação."
+                    }
                 ]
             },
             {
@@ -87,6 +159,63 @@
                     ["Émile Durkheim", "Instabilidade pós-Revolução Francesa, Industrialização.", "Os Fatos Sociais - coisas exteriores e coercitivas sobre os indivíduos.", "Buscar as causas sociais dos fenômenos, não as psicológicas. Comparar dados.", "Fatos Sociais, Consciência Coletiva, Anomia."],
                     ["Karl Marx", "Capitalismo Industrial, Exploração da classe trabalhadora.", "As Relações Sociais de Produção e a luta de classes.", "Materialismo Histórico-Dialético: A realidade económica determina a estrutura social. A história é a história da luta de classes.", "Luta de Classes, Mais-Valia, Alienação, Ideologia."],
                     ["Max Weber", "Racionalização do mundo, Burocratização.", "A Ação Social - conduta humana dotada de sentido e orientada pelo outro.", "Sociologia Compreensiva: Entender o sentido da ação social. Uso de Tipos Ideais.", "Ação Social, Tipo Ideal, Racionalização, Poder."]
+                ],
+                quiz: [
+                    {
+                        question: "Qual é o conceito central de Auguste Comte?",
+                        options: [
+                            "Luta de classes",
+                            "Lei dos Três Estados",
+                            "Ação social",
+                            "Fatos sociais"
+                        ],
+                        correct: 1,
+                        explanation: "Comte propôs a Lei dos Três Estados (Teológico, Metafísico e Positivo) para explicar o desenvolvimento do conhecimento humano."
+                    },
+                    {
+                        question: "Qual é o objeto de estudo central para Durkheim?",
+                        options: [
+                            "A ação individual",
+                            "Os fatos sociais",
+                            "A luta de classes",
+                            "A racionalização"
+                        ],
+                        correct: 1,
+                        explanation: "Durkheim definiu os fatos sociais como coisas exteriores e coercitivas sobre os indivíduos, que constituem o objeto próprio da Sociologia."
+                    },
+                    {
+                        question: "Qual método Karl Marx propôs para analisar a sociedade?",
+                        options: [
+                            "Positivismo",
+                            "Materialismo Histórico-Dialético",
+                            "Funcionalismo",
+                            "Sociologia Compreensiva"
+                        ],
+                        correct: 1,
+                        explanation: "Marx desenvolveu o Materialismo Histórico-Dialético, que enfatiza as condições materiais e a luta de classes como motor da história."
+                    },
+                    {
+                        question: "Qual é o foco da sociologia de Max Weber?",
+                        options: [
+                            "As estruturas sociais",
+                            "A ação social dotada de sentido",
+                            "Os fatos sociais",
+                            "As leis da sociedade"
+                        ],
+                        correct: 1,
+                        explanation: "Weber centrou sua sociologia na ação social, ou seja, na conduta humana dotada de sentido e orientada pelo comportamento de outros."
+                    },
+                    {
+                        question: "Qual pensador associamos ao conceito de 'mais-valia'?",
+                        options: [
+                            "Durkheim",
+                            "Weber",
+                            "Comte",
+                            "Marx"
+                        ],
+                        correct: 3,
+                        explanation: "Karl Marx desenvolveu o conceito de mais-valia para explicar a exploração no sistema capitalista."
+                    }
                 ]
             },
             {
@@ -98,6 +227,63 @@
                     ["Base da Ordem Social", "Consenso moral (Consciência Coletiva), laços de solidariedade (mecânica/orgânica).", "Dominação de uma classe sobre a outra, sustentada pelo Estado e pela ideologia."],
                     ["Origem do Conflito", "Anomia: estado de desregramento social onde as normas perdem a força.", "A exploração inerente ao modo de produção capitalista (a mais-valia)."],
                     ["Função da Divisão do Trabalho", "Criar solidariedade orgânica (interdependência) nas sociedades complexas.", "Gerar alienação e aprofundar a divisão entre capital e trabalho."]
+                ],
+                quiz: [
+                    {
+                        question: "Como Durkheim entende a natureza da sociedade?",
+                        options: [
+                            "Como um palco de conflito permanente",
+                            "Como um sistema integrado e cooperativo",
+                            "Como uma arena de competição individual",
+                            "Como uma construção ideológica"
+                        ],
+                        correct: 1,
+                        explanation: "Durkheim via a sociedade como um organismo integrado onde as partes cooperam para manter o todo."
+                    },
+                    {
+                        question: "Qual é a base da ordem social na perspectiva de Marx?",
+                        options: [
+                            "Consenso moral",
+                            "Dominação de classe",
+                            "Solidariedade orgânica",
+                            "Interdependência funcional"
+                        ],
+                        correct: 1,
+                        explanation: "Para Marx, a ordem social é mantida pela dominação de uma classe sobre outra, sustentada pelo Estado e pela ideologia."
+                    },
+                    {
+                        question: "O que causa o conflito social na visão de Durkheim?",
+                        options: [
+                            "Exploração capitalista",
+                            "Anomia",
+                            "Luta de classes",
+                            "Alienação"
+                        ],
+                        correct: 1,
+                        explanation: "Durkheim identifica a anomia (ausência de normas) como principal causa dos conflitos sociais."
+                    },
+                    {
+                        question: "Como Marx entende a função da divisão do trabalho?",
+                        options: [
+                            "Cria solidariedade orgânica",
+                            "Gera alienação",
+                            "Promove cooperação",
+                            "Fortalecer a consciência coletiva"
+                        ],
+                        correct: 1,
+                        explanation: "Marx vê a divisão do trabalho no capitalismo como geradora de alienação e aprofundamento das divisões de classe."
+                    },
+                    {
+                        question: "Qual conceito é central para entender a coesão social em Durkheim?",
+                        options: [
+                            "Mais-valia",
+                            "Consciência coletiva",
+                            "Ideologia",
+                            "Racionalização"
+                        ],
+                        correct: 1,
+                        explanation: "A consciência coletiva representa o conjunto de crenças e sentimentos comuns à média dos membros de uma sociedade."
+                    }
                 ]
             },
             {
@@ -109,6 +295,63 @@
                     ["Foco de Análise", "Fatos Sociais exteriores e coercitivos.", "Ação Social e sua interpretação."],
                     ["Metodologia", "Explicação causal objetiva, similar às ciências naturais.", "Compreensão (Verstehen) do sentido subjetivo da ação."],
                     ["Exemplo de Ferramenta", "Estatísticas de suicídio para demonstrar um facto social.", "Construção de um Tipo Ideal de burocrata ou de capitalista."]
+                ],
+                quiz: [
+                    {
+                        question: "Qual é o ponto de partida da análise social para Durkheim?",
+                        options: [
+                            "O indivíduo e suas ações",
+                            "A sociedade como um todo",
+                            "As relações de produção",
+                            "A racionalização"
+                        ],
+                        correct: 1,
+                        explanation: "Durkheim parte da sociedade como totalidade que precede e determina os indivíduos."
+                    },
+                    {
+                        question: "O que Weber entende por 'ação social'?",
+                        options: [
+                            "Comportamento determinado biologicamente",
+                            "Conduta humana dotada de sentido e orientada pelo outro",
+                            "Ação guiada exclusivamente por interesses econômicos",
+                            "Comportamento inconsciente e automático"
+                        ],
+                        correct: 1,
+                        explanation: "Para Weber, ação social é toda conduta humana dotada de sentido que leva em conta o comportamento de outros."
+                    },
+                    {
+                        question: "Qual método Durkheim privilegia em suas investigações?",
+                        options: [
+                            "Compreensão do sentido subjetivo",
+                            "Explicação causal objetiva",
+                            "Análise dialética",
+                            "Observação participante"
+                        ],
+                        correct: 1,
+                        explanation: "Durkheim busca explicações causais objetivas, tratando os fenômenos sociais como coisas observáveis."
+                    },
+                    {
+                        question: "O que é o 'Tipo Ideal' na sociologia weberiana?",
+                        options: [
+                            "Um modelo perfeito da realidade",
+                            "Uma construção conceptual que acentua traços essenciais",
+                            "Uma norma moral a ser seguida",
+                            "Uma previsão do futuro da sociedade"
+                        ],
+                        correct: 1,
+                        explanation: "O Tipo Ideal é uma construção mental que destaca aspectos essenciais de um fenômeno para facilitar a análise comparativa."
+                    },
+                    {
+                        question: "Como Weber aborda a relação indivíduo-sociedade?",
+                        options: [
+                            "A sociedade determina completamente o indivíduo",
+                            "O indivíduo constrói a sociedade através de suas ações",
+                            "Não há relação entre indivíduo e sociedade",
+                            "A relação é determinada exclusivamente pela economia"
+                        ],
+                        correct: 1,
+                        explanation: "Weber enfatiza que a sociedade é construída a partir das ações sociais dos indivíduos."
+                    }
                 ]
             },
             {
@@ -120,6 +363,63 @@
                     ["Ação Afetiva", "Emoções, sentimentos imediatos.", "Doar uma grande quantia para uma causa movido pela comoção."],
                     ["Ação Racional com Relação a Valores", "Crença incondicional em um valor (ético, estético, religioso).", "Um militante político que vai para a prisão por defender sua ideologia."],
                     ["Ação Racional com Relação a Fins", "Cálculo de meios e fins para atingir um objetivo.", "Um estudante que escolhe um curso universitário com base no mercado de trabalho."]
+                ],
+                quiz: [
+                    {
+                        question: "Qual tipo de ação social é guiada por costumes e hábitos?",
+                        options: [
+                            "Ação racional com relação a fins",
+                            "Ação tradicional",
+                            "Ação afetiva",
+                            "Ação racional com relação a valores"
+                        ],
+                        correct: 1,
+                        explanation: "A ação tradicional é fundamentada em costumes, hábitos e tradições enraizadas."
+                    },
+                    {
+                        question: "Uma pessoa que doa sangue movida por solidariedade pratica qual tipo de ação?",
+                        options: [
+                            "Ação tradicional",
+                            "Ação afetiva",
+                            "Ação racional com relação a valores",
+                            "Ação racional com relação a fins"
+                        ],
+                        correct: 2,
+                        explanation: "É uma ação racional com relação a valores, pois segue um princípio ético ou valor moral."
+                    },
+                    {
+                        question: "Qual ação é motivada por emoções e sentimentos imediatos?",
+                        options: [
+                            "Ação tradicional",
+                            "Ação afetiva",
+                            "Ação racional com relação a fins",
+                            "Ação racional com relação a valores"
+                        ],
+                        correct: 1,
+                        explanation: "A ação afetiva é determinada por estados emocionais e sentimentos do agente."
+                    },
+                    {
+                        question: "Um empresário que calcula custos e benefícios para maximizar lucros pratica:",
+                        options: [
+                            "Ação tradicional",
+                            "Ação afetiva",
+                            "Ação racional com relação a fins",
+                            "Ação racional com relação a valores"
+                        ],
+                        correct: 2,
+                        explanation: "É ação racional com relação a fins, pois envolve cálculo de meios para atingir objetivos específicos."
+                    },
+                    {
+                        question: "Qual tipo de ação Weber considera mais característica das sociedades modernas?",
+                        options: [
+                            "Ação tradicional",
+                            "Ação afetiva",
+                            "Ação racional com relação a fins",
+                            "Ação racional com relação a valores"
+                        ],
+                        correct: 2,
+                        explanation: "Weber identifica a racionalização e a ação racional com relação a fins como marcas das sociedades modernas ocidentais."
+                    }
                 ]
             },
             {
@@ -130,6 +430,63 @@
                     ["Teoria do Conflito", "Karl Marx, Max Weber", "A sociedade é marcada por conflitos e desigualdades na distribuição de poder e recursos.", "Luta de Classes, Poder, Ideologia, Dominação.", "Pode superestimar o conflito, negligenciando aspectos de consenso e cooperação."],
                     ["Funcionalismo", "Émile Durkheim", "A sociedade é um sistema complexo cujas partes trabalham em conjunto para promover solidariedade e estabilidade.", "Função, Disfunção, Instituições, Solidariedade, Anomia.", "Pode ser conservador, justificando a ordem estabelecida e negligenciando a mudança social."],
                     ["Teoria da Ação Social", "Max Weber", "A sociedade é o produto das ações e interpretações dos indivíduos.", "Ação Social, Tipo Ideal, Racionalização, Compreensão.", "Pode dificultar a generalização, focando excessivamente no aspecto subjetivo."]
+                ],
+                quiz: [
+                    {
+                        question: "Qual corrente teórica enfatiza o conflito como motor da sociedade?",
+                        options: [
+                            "Funcionalismo",
+                            "Teoria do Conflito",
+                            "Teoria da Ação Social",
+                            "Estruturalismo"
+                        ],
+                        correct: 1,
+                        explanation: "A Teoria do Conflito vê a sociedade como palco de disputas por poder e recursos."
+                    },
+                    {
+                        question: "Qual é a principal crítica ao Funcionalismo?",
+                        options: [
+                            "Superestima o conflito",
+                            "É muito subjetivo",
+                            "Pode ser conservador",
+                            "Ignora as instituições"
+                        ],
+                        correct: 2,
+                        explanation: "O Funcionalismo é criticado por tender a justificar a ordem estabelecida, negligenciando a mudança social."
+                    },
+                    {
+                        question: "Qual corrente tem como foco as ações individuais dotadas de sentido?",
+                        options: [
+                            "Funcionalismo",
+                            "Teoria do Conflito",
+                            "Teoria da Ação Social",
+                            "Materialismo histórico"
+                        ],
+                        correct: 2,
+                        explanation: "A Teoria da Ação Social, desenvolvida por Weber, centra-se nas ações sociais dos indivíduos."
+                    },
+                    {
+                        question: "Qual conceito NÃO pertence à Teoria do Conflito?",
+                        options: [
+                            "Luta de classes",
+                            "Ideologia",
+                            "Solidariedade orgânica",
+                            "Dominação"
+                        ],
+                        correct: 2,
+                        explanation: "Solidariedade orgânica é um conceito de Durkheim, associado ao Funcionalismo."
+                    },
+                    {
+                        question: "Qual é a premissa central do Funcionalismo?",
+                        options: [
+                            "A sociedade é produto do conflito",
+                            "As partes da sociedade cooperam para a estabilidade",
+                            "Os indivíduos constroem a realidade social",
+                            "A economia determina a superestrutura"
+                        ],
+                        correct: 1,
+                        explanation: "O Funcionalismo vê a sociedade como um sistema integrado onde as partes cooperam para manter a estabilidade."
+                    }
                 ]
             },
             {
@@ -140,6 +497,63 @@
                     ["Família", "Socialização primária, reprodução.", "Criação de redes de apoio e status social.", "Transmissão de desigualdades ou violência doméstica."],
                     ["Educação", "Transmissão de conhecimentos e habilidades.", "Criação de uma rede de contatos (networking), reforço da hierarquia social.", "Reprodução das desigualdades sociais (Bourdieu)."],
                     ["Religião", "Fornecer sentido e conforto espiritual.", "Promover a coesão do grupo e reforçar normas sociais.", "Gerar intolerância e conflitos sectários."]
+                ],
+                quiz: [
+                    {
+                        question: "O que são funções manifestas segundo o Funcionalismo?",
+                        options: [
+                            "Funções ocultas e não reconhecidas",
+                            "Funções objetivas e declaradas",
+                            "Funções que perturbam o sistema",
+                            "Funções individuais e não sociais"
+                        ],
+                        correct: 1,
+                        explanation: "Funções manifestas são aquelas intencionais, reconhecidas e declaradas pelas instituições."
+                    },
+                    {
+                        question: "Qual é uma função latente da educação?",
+                        options: [
+                            "Transmitir conhecimentos",
+                            "Ensinar habilidades básicas",
+                            "Criar redes de contatos (networking)",
+                            "Preparar para o mercado de trabalho"
+                        ],
+                        correct: 2,
+                        explanation: "A criação de redes sociais é uma função latente da educação, não explicitamente declarada."
+                    },
+                    {
+                        question: "Qual é uma possível disfunção da família?",
+                        options: [
+                            "Socialização primária",
+                            "Reprodução biológica",
+                            "Transmissão de desigualdades",
+                            "Criação de laços afetivos"
+                        ],
+                        correct: 2,
+                        explanation: "A família pode reproduzir desigualdades sociais através da herança de capital cultural e econômico."
+                    },
+                    {
+                        question: "Qual função da religião é considerada manifesta?",
+                        options: [
+                            "Reforçar a coesão grupal",
+                            "Fornecer sentido e conforto espiritual",
+                            "Manter a ordem social",
+                            "Criar identidade coletiva"
+                        ],
+                        correct: 1,
+                        explanation: "Fornecer sentido espiritual é uma função declarada e reconhecida da religião."
+                    },
+                    {
+                        question: "Quem desenvolveu os conceitos de função manifesta e latente?",
+                        options: [
+                            "Karl Marx",
+                            "Max Weber",
+                            "Robert Merton",
+                            "Auguste Comte"
+                        ],
+                        correct: 2,
+                        explanation: "Robert Merton, sociólogo funcionalista, desenvolveu a distinção entre funções manifestas e latentes."
+                    }
                 ]
             },
             {
@@ -152,6 +566,63 @@
                     ["Alienação", "Processo pelo qual o trabalhador se torna estranho ao produto do seu trabalho, ao seu potencial criativo e aos outros.", "O trabalho, que deveria ser realização, torna-se uma atividade estranha e penosa."],
                     ["Ideologia", "Conjunto de ideias que mascara a realidade e justifica a dominação de classe.", "Cria uma 'falsa consciência' na classe trabalhadora, fazendo-a aceitar a ordem que a explora."],
                     ["Consciência de Classe", "Compreensão, por parte do proletariado, de sua real situação de exploração e seu potencial revolucionário.", "É o antídoto para a ideologia e o pré-requisito para a transformação social."]
+                ],
+                quiz: [
+                    {
+                        question: "O que é a mais-valia segundo Marx?",
+                        options: [
+                            "O valor total da produção",
+                            "O valor não pago do trabalho do operário",
+                            "O salário do trabalhador",
+                            "O custo das matérias-primas"
+                        ],
+                        correct: 1,
+                        explanation: "A mais-valia é a diferença entre o valor produzido pelo trabalho e o salário pago ao trabalhador."
+                    },
+                    {
+                        question: "O que Marx entende por alienação?",
+                        options: [
+                            "O processo de urbanização",
+                            "O estranhamento do trabalhador em relação ao produto de seu trabalho",
+                            "A divisão internacional do trabalho",
+                            "A migração para as cidades"
+                        ],
+                        correct: 1,
+                        explanation: "A alienação ocorre quando o trabalhador não se reconhece no produto de seu trabalho e este se torna algo estranho."
+                    },
+                    {
+                        question: "Qual é a tese central do materialismo histórico?",
+                        options: [
+                            "As ideias determinam a realidade material",
+                            "A base económica determina a superestrutura",
+                            "A religião é o ópio do povo",
+                            "O Estado representa o interesse geral"
+                        ],
+                        correct: 1,
+                        explanation: "O materialismo histórico afirma que as condições materiais de produção determinam a organização social e política."
+                    },
+                    {
+                        question: "O que é ideologia para Marx?",
+                        options: [
+                            "Um sistema científico de análise",
+                            "Um conjunto de ideias que mascara a realidade",
+                            "A expressão da verdade histórica",
+                            "Um método de investigação"
+                        ],
+                        correct: 1,
+                        explanation: "A ideologia mascara as relações reais de exploração e justifica a dominação da classe burguesa."
+                    },
+                    {
+                        question: "O que significa consciência de classe?",
+                        options: [
+                            "Aceitação da ordem estabelecida",
+                            "Compreensão da situação de exploração e potencial revolucionário",
+                            "Identificação com a classe dominante",
+                            "Rejeição de qualquer organização coletiva"
+                        ],
+                        correct: 1,
+                        explanation: "A consciência de classe permite ao proletariado entender sua situação de exploração e seu papel na transformação social."
+                    }
                 ]
             },
             {
@@ -162,6 +633,63 @@
                     ["Racionalização", "Processo histórico de substituição de motivações tradicionais ou afetivas pelo cálculo e eficiência.", "Substituição do juízo do artesão pela linha de montagem padronizada.", "A busca pela eficiência máxima pode esvaziar a vida de sentido e espontaneidade."],
                     ["Burocracia", "Forma de organização baseada em regras, hierarquia, impessoalidade e competência técnica.", "Funcionamento de um ministério público, de uma universidade, de um grande hospital.", "Pode gerar desumanização, excesso de papelada e perda de autonomia individual."],
                     ["Tipo Ideal", "Construção conceptual que acentua traços essenciais de um fenômeno social para facilitar a análise.", "O 'Tipo Ideal de Burocracia' ou o 'Espírito do Capitalismo'.", "É uma ferramenta heurística, não uma descrição fiel da realidade, que é sempre mais complexa."]
+                ],
+                quiz: [
+                    {
+                        question: "O que Weber entende por racionalização?",
+                        options: [
+                            "Aumento da religiosidade",
+                            "Substituição de tradições por cálculo e eficiência",
+                            "Fortalecimento dos valores familiares",
+                            "Retorno às comunidades tradicionais"
+                        ],
+                        correct: 1,
+                        explanation: "A racionalização é o processo de substituição de motivações tradicionais e afetivas pelo cálculo racional e busca de eficiência."
+                    },
+                    {
+                        question: "Qual é a principal característica da burocracia weberiana?",
+                        options: [
+                            "Flexibilidade e improvisação",
+                            "Baseada em regras e hierarquia",
+                            "Decisões pessoais e arbitrárias",
+                            "Ausência de especialização"
+                        ],
+                        correct: 1,
+                        explanation: "A burocracia ideal weberiana é impessoal, hierárquica e baseada em regras formais."
+                    },
+                    {
+                        question: "O que Weber chama de 'Jaula de Aço'?",
+                        options: [
+                            "O sistema prisional moderno",
+                            "As consequências paradoxais da racionalização",
+                            "A estrutura de classes capitalista",
+                            "O controle estatal sobre os indivíduos"
+                        ],
+                        correct: 1,
+                        explanation: "'Jaula de Aço' refere-se ao paradoxo onde a busca pela eficiência e racionalidade pode esvaziar a vida de sentido e liberdade."
+                    },
+                    {
+                        question: "Para que serve o 'Tipo Ideal' na metodologia weberiana?",
+                        options: [
+                            "Como modelo normativo a ser seguido",
+                            "Como descrição completa da realidade",
+                            "Como construção conceptual para análise comparativa",
+                            "Como previsão do futuro da sociedade"
+                        ],
+                        correct: 2,
+                        explanation: "O Tipo Ideal é uma ferramenta heurística que destaca aspectos essenciais para facilitar a análise sociológica."
+                    },
+                    {
+                        question: "Qual é uma consequência negativa da burocracia?",
+                        options: [
+                            "Excesso de flexibilidade",
+                            "Falta de organização",
+                            "Desumanização e perda de autonomia",
+                            "Ausência de regras claras"
+                        ],
+                        correct: 2,
+                        explanation: "A burocracia pode levar à desumanização, onde as pessoas são tratadas como números e perdem autonomia."
+                    }
                 ]
             },
             {
@@ -173,13 +701,72 @@
                     ["Émile Durkheim", "Método Funcionalista: Isolar fatos sociais e buscar suas causas sociais através de correlações.", "Estatísticas (ex: taxas de suicídio) que revelem um padrão social externo ao indivíduo.", "Explicar um fenômeno social por sua função na sociedade."],
                     ["Karl Marx", "Materialismo Dialético: Análise histórica e económica das relações de classe.", "Documentos históricos, dados económicos que revelem a luta de classes e a exploração.", "Criticar a sociedade capitalista e transformá-la através da práxis."],
                     ["Max Weber", "Sociologia Compreensiva: Construção de Tipos Ideais para entender o sentido da ação social.", "Documentos, diários, comportamentos observáveis que permitam inferir o sentido subjetivo da ação.", "Compreender como as ações sociais, em aggregate, constroem estruturas sociais complexas."]
+                ],
+                quiz: [
+                    {
+                        question: "Qual método Comte propõe para a Sociologia?",
+                        options: [
+                            "Sociologia compreensiva",
+                            "Materialismo dialético",
+                            "Positivismo",
+                            "Funcionalismo"
+                        ],
+                        correct: 2,
+                        explanation: "Comte propõe o positivismo, aplicando métodos das ciências naturais ao estudo da sociedade."
+                    },
+                    {
+                        question: "O que Durkheim considera como 'bom dado' sociológico?",
+                        options: [
+                            "Opiniões individuais",
+                            "Estatísticas que revelem padrões sociais",
+                            "Documentos históricos",
+                            "Sentimentos subjetivos"
+                        ],
+                        correct: 1,
+                        explanation: "Durkheim valoriza estatísticas que demonstrem regularidades sociais externas aos indivíduos."
+                    },
+                    {
+                        question: "Qual é o objetivo da análise marxista?",
+                        options: [
+                            "Estabelecer leis gerais da sociedade",
+                            "Compreender o sentido da ação social",
+                            "Criticar e transformar a sociedade capitalista",
+                            "Explicar as funções das instituições"
+                        ],
+                        correct: 2,
+                        explanation: "Marx busca não apenas compreender, mas transformar a sociedade através da crítica e da práxis revolucionária."
+                    },
+                    {
+                        question: "O que Weber busca compreender em sua sociologia?",
+                        options: [
+                            "As leis gerais do desenvolvimento social",
+                            "O sentido subjetivo da ação social",
+                            "As funções das instituições",
+                            "As causas biológicas do comportamento"
+                        ],
+                        correct: 1,
+                        explanation: "Weber foca na compreensão do sentido que os agentes atribuem às suas ações sociais."
+                    },
+                    {
+                        question: "Qual pensador utiliza o conceito de 'Tipo Ideal' como ferramenta metodológica?",
+                        options: [
+                            "Comte",
+                            "Durkheim",
+                            "Marx",
+                            "Weber"
+                        ],
+                        correct: 3,
+                        explanation: "Weber desenvolveu o conceito de Tipo Ideal como instrumento para análise sociológica comparativa."
+                    }
                 ]
             }
         ];
 
+        // Elementos da página
         const tableTitle = document.getElementById('table-title');
         const tableDescription = document.querySelector('.table-description');
         const currentTable = document.getElementById('current-table');
+        const quizArea = document.getElementById('quiz-area');
         const currentTableNumber = document.getElementById('current-table-number');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
@@ -192,7 +779,9 @@
             tableDescription.textContent = table.description;
             currentTableNumber.textContent = index + 1;
             currentTable.innerHTML = '';
+            quizArea.innerHTML = '';
             
+            // Renderizar tabela
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
             table.headers.forEach(headerText => {
@@ -215,10 +804,124 @@
             });
             currentTable.appendChild(tbody);
             
+            // Renderizar quiz se existir
+            if (table.quiz) {
+                renderQuiz(table.quiz);
+            }
+            
             prevBtn.disabled = index === 0;
             nextBtn.disabled = index === tables.length - 1;
         }
 
+        function renderQuiz(quizQuestions) {
+            const quizContainer = document.createElement('div');
+            quizContainer.className = 'quiz-container';
+            
+            const quizTitle = document.createElement('h3');
+            quizTitle.textContent = 'Quiz de Verificação';
+            quizContainer.appendChild(quizTitle);
+            
+            quizQuestions.forEach((question, questionIndex) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'quiz-question';
+                
+                const questionText = document.createElement('p');
+                questionText.innerHTML = `<strong>${questionIndex + 1}. ${question.question}</strong>`;
+                questionElement.appendChild(questionText);
+                
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'quiz-options';
+                
+                question.options.forEach((option, optionIndex) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'quiz-option';
+                    optionElement.textContent = option;
+                    optionElement.dataset.questionIndex = questionIndex;
+                    optionElement.dataset.optionIndex = optionIndex;
+                    optionElement.addEventListener('click', handleAnswerClick);
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                questionElement.appendChild(optionsContainer);
+                
+                const feedbackElement = document.createElement('div');
+                feedbackElement.className = 'quiz-feedback';
+                feedbackElement.id = `feedback-${questionIndex}`;
+                questionElement.appendChild(feedbackElement);
+                
+                quizContainer.appendChild(questionElement);
+            });
+            
+            const resultsElement = document.createElement('div');
+            resultsElement.className = 'quiz-results';
+            resultsElement.id = 'quiz-results';
+            quizContainer.appendChild(resultsElement);
+            
+            quizArea.appendChild(quizContainer);
+        }
+
+        function handleAnswerClick(event) {
+            const questionIndex = parseInt(event.target.dataset.questionIndex);
+            const optionIndex = parseInt(event.target.dataset.optionIndex);
+            const question = tables[currentIndex].quiz[questionIndex];
+            
+            // Remover seleções anteriores desta questão
+            const options = event.target.parentElement.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+            });
+            
+            // Mostrar feedback
+            const feedbackElement = document.getElementById(`feedback-${questionIndex}`);
+            
+            if (optionIndex === question.correct) {
+                event.target.classList.add('correct');
+                feedbackElement.textContent = `✓ Correto! ${question.explanation}`;
+                feedbackElement.className = 'quiz-feedback correct';
+            } else {
+                event.target.classList.add('incorrect');
+                // Mostrar também a resposta correta
+                options[question.correct].classList.add('correct');
+                feedbackElement.textContent = `✗ Incorreto. ${question.explanation}`;
+                feedbackElement.className = 'quiz-feedback incorrect';
+            }
+            
+            feedbackElement.style.display = 'block';
+            
+            // Verificar se todas as questões foram respondidas
+            checkQuizCompletion();
+        }
+
+        function checkQuizCompletion() {
+            const allQuestions = tables[currentIndex].quiz;
+            const feedbackElements = document.querySelectorAll('.quiz-feedback');
+            const answeredQuestions = Array.from(feedbackElements).filter(fb => fb.style.display === 'block').length;
+            
+            if (answeredQuestions === allQuestions.length) {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            const resultsElement = document.getElementById('quiz-results');
+            const correctAnswers = document.querySelectorAll('.quiz-feedback.correct').length;
+            const totalQuestions = tables[currentIndex].quiz.length;
+            const percentage = (correctAnswers / totalQuestions) * 100;
+            
+            let message = '';
+            if (percentage >= 80) {
+                message = `🎉 Excelente! Você acertou ${correctAnswers} de ${totalQuestions} questões (${percentage.toFixed(0)}%)`;
+            } else if (percentage >= 60) {
+                message = `👍 Bom trabalho! Você acertou ${correctAnswers} de ${totalQuestions} questões (${percentage.toFixed(0)}%)`;
+            } else {
+                message = `📚 Continue estudando! Você acertou ${correctAnswers} de ${totalQuestions} questões (${percentage.toFixed(0)}%)`;
+            }
+            
+            resultsElement.innerHTML = `<h4>Resultado do Quiz</h4><p>${message}</p>`;
+            resultsElement.style.display = 'block';
+        }
+
+        // Navegação entre tabelas
         prevBtn.addEventListener('click', () => {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -233,6 +936,7 @@
             }
         });
 
+        // Inicializar
         renderTable(currentIndex);
     </script>
 </body>
